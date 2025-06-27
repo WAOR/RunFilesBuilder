@@ -35,29 +35,29 @@ jobs:
           mkdir -p openlist_x86_64 openlist_aarch64_cortex-a53
       
           # 下载 x86_64 压缩包并解压到指定目录
-          x86_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-22.03-x86_64.tar.gz"' | cut -d '"' -f4)
+          x86_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-x86_64.tar.gz"' | cut -d '"' -f4)
           curl -LO $x86_url
-          tar --one-top-level=openlist_x86_64/openwrt-22.03-x86_64 -xvzf openwrt-22.03-x86_64.tar.gz
-          rm openwrt-22.03-x86_64.tar.gz 
+          tar --one-top-level=openlist_x86_64/openwrt-24.10-x86_64 -xvzf openwrt-24.10-x86_64.tar.gz
+          rm openwrt-24.10-x86_64.tar.gz 
       
           # 下载 aarch64 压缩包并解压到指定目录
-          aarch64_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-22.03-aarch64_cortex-a53.tar.gz"' | cut -d '"' -f4)
+          aarch64_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-aarch64_cortex-a53.tar.gz"' | cut -d '"' -f4)
           curl -LO $aarch64_url
-          tar --one-top-level=openlist_aarch64_cortex-a53/openwrt-22.03-aarch64_cortex-a53 -xvzf openwrt-22.03-aarch64_cortex-a53.tar.gz
-          rm openwrt-22.03-aarch64_cortex-a53.tar.gz 
+          tar --one-top-level=openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53 -xvzf openwrt-24.10-aarch64_cortex-a53.tar.gz
+          rm openwrt-24.10-aarch64_cortex-a53.tar.gz 
   
 
       - name: List files for aarch64_cortex-a53&x86_64
         run: |
-          echo "打印目录 openlist_x86_64/openwrt-22.03-x86_64/packages_ci"
-          ls openlist_x86_64/openwrt-22.03-x86_64/packages_ci
-          mv openlist_x86_64/openwrt-22.03-x86_64/packages_ci/*.ipk openlist_x86_64
-          rm -rf openlist_x86_64/openwrt-22.03-x86_64
+          echo "打印目录 openlist_x86_64/openwrt-24.10-x86_64/packages_ci"
+          ls openlist_x86_64/openwrt-24.10-x86_64/packages_ci
+          mv openlist_x86_64/openwrt-24.10-x86_64/packages_ci/*.ipk openlist_x86_64
+          rm -rf openlist_x86_64/openwrt-24.10-x86_64
 
-          echo "打印目录 openlist_aarch64_cortex-a53/openwrt-22.03-aarch64_cortex-a53/packages_ci"
-          ls openlist_aarch64_cortex-a53/openwrt-22.03-aarch64_cortex-a53/packages_ci 
-          mv openlist_aarch64_cortex-a53/openwrt-22.03-aarch64_cortex-a53/packages_ci/*.ipk openlist_aarch64_cortex-a53
-          rm -rf openlist_aarch64_cortex-a53/openwrt-22.03-aarch64_cortex-a53
+          echo "打印目录 openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53/packages_ci"
+          ls openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53/packages_ci 
+          mv openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53/packages_ci/*.ipk openlist_aarch64_cortex-a53
+          rm -rf openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53
         
 
       - name: Create install.sh scripts
