@@ -4,6 +4,7 @@
 declare -A PLATFORMS=(
   ["x86_64"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/x86_64"
   ["aarch64_generic"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_generic"
+  ["aarch64_cortex-a53"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_cortex-a53"
 )
 
 # 各类包对应的目录
@@ -40,10 +41,16 @@ for platform in "${!PLATFORMS[@]}"; do
     if [ -n "$FILE" ]; then
       echo "⬇️ 正在下载: $FILE"
       curl -s -L -o "${SAVE_DIR}/${FILE}" "${URL}${FILE}"
+      # 🚧 如果文件名中含 ~，重命名为 -
+      if [[ "$FILE" == *"~"* ]]; then
+        NEW_FILE=$(echo "$FILE" | tr '~' '-')
+        mv "${SAVE_DIR}/${FILE}" "${SAVE_DIR}/${NEW_FILE}"
+        echo "🔧 已重命名为: $NEW_FILE"
+      fi
     else
       echo "❌ 未找到匹配: $keyword"
     fi
   done
 done
 
-echo "✅ 下载完成，文件已分别存入 x86_64/ 与 aarch64_generic/ 目录中。"
+echo "✅ 下载完成，文件已分别存入 x86_64、aarch64_generic、aarch64_cortex-a53 目录中。"
