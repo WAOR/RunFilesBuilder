@@ -35,13 +35,13 @@ jobs:
           mkdir -p openlist_x86_64 openlist_aarch64_cortex-a53
       
           # 下载 x86_64 压缩包并解压到指定目录
-          x86_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-x86_64.tar.gz"' | cut -d '"' -f4)
+          x86_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist2/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-x86_64.tar.gz"' | cut -d '"' -f4)
           curl -LO $x86_url
           tar --one-top-level=openlist_x86_64/openwrt-24.10-x86_64 -xvzf openwrt-24.10-x86_64.tar.gz
           rm openwrt-24.10-x86_64.tar.gz 
       
           # 下载 aarch64 压缩包并解压到指定目录
-          aarch64_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-aarch64_cortex-a53.tar.gz"' | cut -d '"' -f4)
+          aarch64_url=$(curl -s https://api.github.com/repos/sbwml/luci-app-openlist2/releases/latest | grep -oP '"browser_download_url":\s*".*openwrt-24.10-aarch64_cortex-a53.tar.gz"' | cut -d '"' -f4)
           curl -LO $aarch64_url
           tar --one-top-level=openlist_aarch64_cortex-a53/openwrt-24.10-aarch64_cortex-a53 -xvzf openwrt-24.10-aarch64_cortex-a53.tar.gz
           rm openwrt-24.10-aarch64_cortex-a53.tar.gz 
